@@ -16,7 +16,7 @@ if not os.path.exists(UPLOAD_DIRECTORY):
 app = Flask(__name__)
 app.secret_key = "SECRET_KEY"
 
-@app.route('/')
+@app.route('/echo')
 def echo():
     """Simple ping-echo handshake."""
     return '...echo...'
@@ -73,5 +73,4 @@ def store_file(filename):
 
 
 if __name__ == "__main__":
-    #app.run(debug=True, port=9000)
     app.run(host='127.0.0.1', port=8080, debug=True)
