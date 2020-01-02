@@ -16,6 +16,11 @@ if not os.path.exists(UPLOAD_DIRECTORY):
 app = Flask(__name__)
 app.secret_key = "SECRET_KEY"
 
+@app.route('/')
+def echo():
+    """Simple ping-echo handshake."""
+    return '...echo...'
+
 @app.route("/inventory")
 def inventory_files():
     """This is an endpoint to generate a list of files as an inventory of what is on the server."""
