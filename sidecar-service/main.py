@@ -5,7 +5,6 @@ REST Endpoint - rudimentary sidecar seed.
 
 import os
 import io
-
 from flask import Flask, request, abort, jsonify, send_from_directory, send_file
 
 UPLOAD_DIRECTORY = "./STORAGE_AREA"
@@ -39,12 +38,16 @@ def query_data_source():
     """This function enables the client to retrieve a file, storing it as a binary stream (octet-stream)."""
     path = os.path.join(UPLOAD_DIRECTORY, data_source)
     print(path)
-    with open(path, 'rb') as bytes:
+    with open(path) as json_file:
+    data = json.load(json_file)
+    return(jsonify(data))
+
+"""    with open(path, 'rb') as bytes:
         return send_file(
             io.BytesIO(bytes.read()),
             attachment_filename=key,
             mimetype='application/octet-stream' )
-
+"""
 
 @app.route("/retrieve/<filename>")
 def retrieve_file(filename):
